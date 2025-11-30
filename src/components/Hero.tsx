@@ -1,0 +1,30 @@
+// Each pages have a Hero.
+
+import Link from "next/link";
+
+// Props could be provided in order to make some difference
+export default function Hero({}){
+    return (
+      <div
+        className="hero min-h-screen"
+        style={{
+          backgroundImage:
+            "url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp)",
+        }}
+      >
+        <div className="hero-overlay"></div>
+        <div className="hero-content text-neutral-content text-center">
+          <div className="max-w-md">
+            <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
+            <p className="mb-5">
+              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
+              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
+              et a id nisi.
+            </p>
+            <Link href="/members" className="btn btn-primary">Devenir membre</Link>
+          </div>
+        </div>
+      </div>
+    );
+}
+

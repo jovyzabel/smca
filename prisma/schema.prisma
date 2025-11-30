@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// For the login system
+model User {
+  id        String      @id @db.Uuid
+  email     String   @unique
+  name      String?
+  role      Role
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Roles for the login system
+enum Role {
+  ADMIN
+  MEMBER
+}
+
+// The Adherent is not consider as an member (adherent) until the status
+// move from pending to approved
+model Adherent {
+  id          Int      @id @default(autoincrement())
+  firstName   String
+  lastName    String
+  email       String   @unique
+  phone       String?
+  birthDate   DateTime?
+  address     String?
+  nationality String?
+  id_card    String?
+  churchAffiliation String?
+  status     AdherentStatus @default(PENDING)
+  adhesionRequest AdhesionRequest? 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum AdherentStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+enum AdhesionRequestStatus {
+  SUBMITTED
+  UNDER_REVIEW
+  APPROVED
+  REJECTED
+}
+
+// AdhesionRequest linked to an Adherent
+model AdhesionRequest {
+  id Int @id @default(autoincrement())
+  adherent Adherent @relation(fields: [adherentId], references: [id])
+  adherentId Int @unique
+  motivation String
+  status AdhesionRequestStatus @default(SUBMITTED)
+  submittedAt DateTime @default(now())
+}
