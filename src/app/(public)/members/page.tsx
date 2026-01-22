@@ -9,18 +9,18 @@ export default function MembersPage() {
         <h1 className="text-3xl font-bold">Devenir membre</h1>
       </div>
       <div className="">
-        <form action={becomeMember}>  
+        <form action={becomeMember}>
           <div className="form-control flex gap-5 justify-center flex-wrap">
-            <div className="w-64">
+            <div className="">
               {/* CHAMP 1 : Nom(s) */}
               <div className="mb-4">
                 <label className="label">
                   <span className="label-text">Nom(s)</span>
                 </label>
-                <input
+                <input                                                                                                                                                                                                                                                                                                                        
                   type="text"
                   placeholder="Type here"
-                  className="input input-bordered w-full max-w-xs"
+                  className="input input-bordered w-full"
                   name="nom"
                 />
               </div>
@@ -118,37 +118,31 @@ export default function MembersPage() {
             </div>
 
             {/* ... Le reste du formulaire (à appliquer le même pattern) */}
-
-            <div className="w-64">
-              {/* CHAMP 8 : Textearea */}
-              <div className="mb-4">
-                <label className="label">
-                  <span className="label-text">
-                    Pourquoi voulez-vous être un membre?
-                  </span>
-                </label>
-                <textarea
-                  className="textarea textarea-bordered h-48 w-full max-w-xs"
-                  placeholder="Votre réponse ici"
-                  name="motivation"
-                ></textarea>
-              </div>
-
-              {/* CHAMP 9 : Fichier */}
-              <div className="mb-4">
-                <fieldset className="fieldset">
-                  <legend className="fieldset-legend">Piece identité</legend>
-                  <input
-                    type="file"
-                    className="file-input"
-                    name="pieceIdentite"
-                  />
-                  <label className="label">Max size 2MB</label>
-                </fieldset>
-              </div>
-            </div>
           </div>
           <br />
+
+          {/* CHAMP 8 : Textearea */}
+          <div className="">
+            <div className="mb-4 grid">
+              <label className="label text-center">
+                  Pourquoi voulez-vous être un membre?
+              </label>
+              <br />
+              <textarea
+                className="textarea textarea-bordered h-60 w-full grid-cols-2 grid-rows-4"
+                placeholder="Votre réponse ici"
+                name="motivation"
+              ></textarea>
+            </div>
+          </div>
+          {/* CHAMP 9 : Fichier */}
+          <div className="mb-4">
+            <fieldset className="fieldset">
+              <legend className="fieldset-legend">Piece identité</legend>
+              <input type="file" className="file-input" name="pieceIdentite" />
+              <label className="label">Max size 2MB</label>
+            </fieldset>
+          </div>
           <div className="flex justify-center">
             <button className="btn btn-primary">Soumettre</button>
           </div>
