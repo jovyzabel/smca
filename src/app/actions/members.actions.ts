@@ -3,7 +3,7 @@
 import { prisma } from "../../../lib/prisma";
 
 async function becomeMember(data: FormData) {
-  "use server";
+//   "use server";
   // Logique pour traiter les données du formulaire et créer un nouveau membre
   const nom = data.get("nom") as string;
   const prenom = data.get("prenom") as string;
