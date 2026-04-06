@@ -1,10 +1,10 @@
-import { getServerSession } from "next-auth/next";
+import { auth } from "@/auth";
 import { redirect } from "next/dist/client/components/navigation";
 
 // src/app/admin/page.tsx
 export default async function AdminPage(){
 
-    const session = await getServerSession();
+    const session = await auth();
     
     if (!session) {
       redirect("/auth/signin");

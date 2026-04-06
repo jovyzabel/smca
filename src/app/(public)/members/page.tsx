@@ -1,12 +1,13 @@
-import becomeMember from "@/app/actions/members.actions";
+import {becomeMember} from "@/app/actions/members.actions";
+import Tiptap from "@/components/wysiwyg/Tiptap";
+import styles from "./member.module.css";
+import nationality from "@/enum/enum";
 
 export default function MembersPage() {
-
-
   return (
     <main className="mt-5 p-5 max-w-4xl mx-auto">
-      <div className="p-6">
-        <h1 className="text-3xl font-bold">Devenir membre</h1>
+      <div className="border m-10 py-4 mb-8 bg-base-200 rounded-lg text-center">
+        <h1 className={`text-3xl font-bold ${styles.h1}`}>Devenir membre</h1>
       </div>
       <div className="">
         <form action={becomeMember}>
@@ -17,11 +18,12 @@ export default function MembersPage() {
                 <label className="label">
                   <span className="label-text">Nom(s)</span>
                 </label>
-                <input                                                                                                                                                                                                                                                                                                                        
+                <input
                   type="text"
                   placeholder="Type here"
                   className="input input-bordered w-full"
                   name="nom"
+                  required
                 />
               </div>
 
@@ -35,6 +37,7 @@ export default function MembersPage() {
                   placeholder="Type here"
                   className="input input-bordered w-full max-w-xs"
                   name="prenom"
+                  required
                 />
               </div>
 
@@ -48,6 +51,7 @@ export default function MembersPage() {
                   placeholder="Type here"
                   className="input input-bordered w-full max-w-xs"
                   name="dateNaissance"
+                  required
                 />
               </div>
 
@@ -56,12 +60,16 @@ export default function MembersPage() {
                 <label className="label">
                   <span className="label-text">Nationalité</span>
                 </label>
-                <input
-                  type="text"
-                  placeholder="Type here"
-                  className="input input-bordered w-full max-w-xs"
-                  name="nationalite"
-                />
+                <select defaultValue="Choisissez une nationalité" className="select" name="nationalite">
+                  <option disabled={true}>Pick a color</option>
+                  <option value={nationality.CONGO}>Congo</option>
+                  <option value={nationality.RDC}>RDC</option>
+                  <option value={nationality.CAMEROUN}>Cameroun</option>
+                  <option value={nationality.GABON}>Gabon</option>
+                  <option value={nationality.SENEGAL}>Sénégal</option>
+                  <option value={nationality.AUTRE}>Autre</option>
+                </select>
+              
               </div>
             </div>
 
@@ -76,6 +84,7 @@ export default function MembersPage() {
                   placeholder="Type here"
                   className="input input-bordered w-full max-w-xs"
                   name="email"
+                  required
                 />
               </div>
 
@@ -106,7 +115,7 @@ export default function MembersPage() {
               </div>
               <div className="mb-4">
                 <label className="label">
-                  <span className="label-text">Eglise</span>
+                  <span className="label-text">Eglise locale</span>
                 </label>
                 <input
                   type="text"
@@ -124,22 +133,18 @@ export default function MembersPage() {
           {/* CHAMP 8 : Textearea */}
           <div className="">
             <div className="mb-4 grid">
-              <label className="label text-center">
-                  Pourquoi voulez-vous être un membre?
+              <label className="font-bold text-center mb-2">
+                Votre motivation
               </label>
-              <br />
-              <textarea
-                className="textarea textarea-bordered h-60 w-full grid-cols-2 grid-rows-4"
-                placeholder="Votre réponse ici"
-                name="motivation"
-              ></textarea>
+              
+              <Tiptap />
             </div>
           </div>
           {/* CHAMP 9 : Fichier */}
-          <div className="mb-4">
+          <div className="mb-4 flex justify-center">
             <fieldset className="fieldset">
-              <legend className="fieldset-legend">Piece identité</legend>
-              <input type="file" className="file-input" name="pieceIdentite" />
+              <legend className="fieldset-legend">Photo identité</legend>
+              <input type="file" className="file-input" name="pieceIdentite" required />
               <label className="label">Max size 2MB</label>
             </fieldset>
           </div>

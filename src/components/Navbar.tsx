@@ -1,8 +1,9 @@
 import Link from "next/link";
 
-export default function NavBar(){
-    return (
-      <nav className="navbar bg-base-100 shadow-sm fixed top-0 z-10">
+export default function NavBar() {
+  return (
+    <nav className="navbar bg-base-100 shadow-sm fixed top-0 z-10">
+      <div className="max-w-6xl mx-auto px-6 w-full flex items-center">
         <div className="navbar-start relative">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -71,9 +72,9 @@ export default function NavBar(){
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Devenir membre</a>
+          <Link href="/members" className="btn">Devenir membre</Link>
         </div>
-      </nav>
-    );
+      </div>
+    </nav>
+  );
 }
-

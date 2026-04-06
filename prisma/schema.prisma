@@ -76,3 +76,4 @@ model AdhesionRequest {
   status AdhesionRequestStatus @default(SUBMITTED)
   submittedAt DateTime @default(now())
 }
+
