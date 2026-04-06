@@ -3,28 +3,32 @@
 import Link from "next/link";
 
 // Props could be provided in order to make some difference
-export default function Hero({}){
-    return (
-      <div
-        className="hero min-h-screen"
-        style={{
-          backgroundImage:
-            "url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp)",
-        }}
-      >
-        <div className="hero-overlay"></div>
-        <div className="hero-content text-neutral-content text-center">
-          <div className="max-w-md">
-            <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
+export default function Hero({}) {
+  return (
+    <div
+      className="hero min-h-screen"
+      style={{
+        backgroundImage: `url("img/landing.jpg")`,
+        
+          
+      }}
+    >
+      <div className="hero-overlay"></div>
+      <div className="hero-content text-neutral-content text-center">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-md mx-auto">
+            <h1 className="mb-5 text-5xl font-bold">Praise be the Lord!</h1>
             <p className="mb-5">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
+              Our Father, Who art in heaven, hallowed be Thy name; Thy kingdom come; 
+              Thy will be done on earth as it is in heaven. 
+              Give us this day our daily bread;
             </p>
-            <Link href="/members" className="btn btn-primary">Devenir membre</Link>
+            <Link href="/members" className="btn btn-primary">
+              Devenir membre
+            </Link>
           </div>
         </div>
       </div>
-    );
+    </div>
+  );
 }
-
