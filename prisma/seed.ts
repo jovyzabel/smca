@@ -1,11 +1,10 @@
 // prisma/seed.ts
 import bcrypt from "bcryptjs";
 import "dotenv/config";
-// import { PrismaClient } from "@/generated/prisma/client";
 import { prisma } from "../lib/prisma";
 
-// const prisma = new PrismaClient();
-
+const adminEmail = process.env.ADMIN_EMAIL ?? "admin@example.com";
+const adminName = process.env.ADMIN_NAME ?? "admin";
 const adminPassword = process.env.ADMIN_PASSWORD;
 
 async function main() {
@@ -17,26 +16,30 @@ async function main() {
 
   const hashedPassword = await bcrypt.hash(adminPassword, 12);
 
-  const existingAdmin = await prisma.user.findFirst({
-    where: {
-      role: "ADMIN",
-    },
+  const existingAdmin = await prisma.user.findUnique({
+    where: { email: adminEmail },
   });
 
   if (existingAdmin) {
-    console.log("Admin user already exists. Skipping creation.");
+    const updatedAdmin = await prisma.user.update({
+      where: { email: adminEmail },
+      data: {
+        password: hashedPassword,
+        name: adminName,
+        role: "ADMIN",
+      },
+    });
+
+    console.log("Admin user already exists. Password and profile were updated:", updatedAdmin.email);
     return;
   }
 
-  // Upsert an admin user
-  const adminUser = await prisma.user.upsert({
-    where: { email: "admin@example.com" },
-    update: { password: hashedPassword, name: "admin" },
-    create: {
-      email: "admin@example.com",
+  const adminUser = await prisma.user.create({
+    data: {
+      email: adminEmail,
       password: hashedPassword,
       role: "ADMIN",
-      name: "admin",
+      name: adminName,
     },
   });
 

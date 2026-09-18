@@ -1,4 +1,5 @@
-import {becomeMember} from "@/app/actions/members.actions";
+import { becomeMember } from "@/app/actions/members.actions";
+import IdentityPhotoUploader from "@/components/IdentityPhotoUploader";
 import Tiptap from "@/components/wysiwyg/Tiptap";
 import styles from "./member.module.css";
 import nationality from "@/enum/enum";
@@ -69,7 +70,6 @@ export default function MembersPage() {
                   <option value={nationality.SENEGAL}>Sénégal</option>
                   <option value={nationality.AUTRE}>Autre</option>
                 </select>
-              
               </div>
             </div>
 
@@ -125,29 +125,22 @@ export default function MembersPage() {
                 />
               </div>
             </div>
-
-            {/* ... Le reste du formulaire (à appliquer le même pattern) */}
           </div>
           <br />
 
           {/* CHAMP 8 : Textearea */}
           <div className="">
             <div className="mb-4 grid">
-              <label className="font-bold text-center mb-2">
-                Votre motivation
-              </label>
-              
+              <label className="font-bold text-center mb-2">Votre motivation</label>
               <Tiptap />
             </div>
           </div>
+
           {/* CHAMP 9 : Fichier */}
           <div className="mb-4 flex justify-center">
-            <fieldset className="fieldset">
-              <legend className="fieldset-legend">Photo identité</legend>
-              <input type="file" className="file-input" name="pieceIdentite" required />
-              <label className="label">Max size 2MB</label>
-            </fieldset>
+            <IdentityPhotoUploader />
           </div>
+
           <div className="flex justify-center">
             <button className="btn btn-primary">Soumettre</button>
           </div>
